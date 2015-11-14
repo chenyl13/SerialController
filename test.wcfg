@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="D:/code/git/stash/serial_controller/test_isim_beh2.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="math_real" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+            <top_module name="test" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/test/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/en_r" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en_r</obj_property>
+      <obj_property name="ObjectShortName">en_r</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/en_w" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">en_w</obj_property>
+      <obj_property name="ObjectShortName">en_w</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/rx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">rx</obj_property>
+      <obj_property name="ObjectShortName">rx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/data_bus" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_bus[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_bus[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">tx</obj_property>
+      <obj_property name="ObjectShortName">tx</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/read_ready" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">read_ready</obj_property>
+      <obj_property name="ObjectShortName">read_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/uut/pr_state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">pr_state</obj_property>
+      <obj_property name="ObjectShortName">pr_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/uut/UART_instance/data_stream_in_stb" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data_stream_in_stb</obj_property>
+      <obj_property name="ObjectShortName">data_stream_in_stb</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/uut/UART_instance/data_stream_in_ack" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">data_stream_in_ack</obj_property>
+      <obj_property name="ObjectShortName">data_stream_in_ack</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/uut/UART_instance/data_stream_in" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">data_stream_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_stream_in[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/test/uut/UART_instance/tx" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">tx</obj_property>
+      <obj_property name="ObjectShortName">tx</obj_property>
+   </wvobject>
+</wave_config>

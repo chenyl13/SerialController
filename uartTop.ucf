@@ -1,0 +1,7 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "USB_RS232_RXD" LOC = P24;
+NET "USB_RS232_TXD" LOC = R26;
+NET "USER_RESET" LOC = T1;
+NET "CLOCK_Y3" LOC = U26;

@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# PlanAhead v14.2
+# Build 194362 by xbuild on Fri Jul 20 18:52:36 MDT 2012
+# Start of session at: Sat Nov 14 17:11:27 2015
+# Process ID: 6984
+# Log file: D:/code/git/stash/serial_controller/planAhead_run_1/planAhead.log
+# Journal file: D:/code/git/stash/serial_controller/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source D:/code/git/stash/serial_controller/pa.fromNetlist.tcl
