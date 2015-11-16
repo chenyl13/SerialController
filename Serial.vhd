@@ -128,6 +128,8 @@ begin
 					 
 					 case pr_state is
 						  when idle =>
+								uart_in_stb        <= '0';
+								uart_out_ack       <= '0';
 								if en_w = '1' then
 									next_state := start_write;
 									uart_data_in <= data_bus(7 downto 0);
