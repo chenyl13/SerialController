@@ -77,7 +77,6 @@ begin
 							
 						when start_read =>
 							pr_state <= read_data;
-							led <= X"00";
 							
 						when read_data =>
 							pr_state <= finish;
@@ -85,9 +84,16 @@ begin
 							data_bus <= (others => 'Z');
 							
 						when finish =>
-							pr_state <= idle;
+							pr_state <= start_write;
 							led <= data(7 downto 0);
-							--data_bus <= data;
+							data_bus <= data;
+							
+						when start_write =>
+							pr_state <= write_data;
+							en_w <= '1';
+							
+						when write_data =>
+							pr_state <= idle;
 							
 						when others =>
 							pr_state <= idle;
@@ -95,52 +101,7 @@ begin
 				end if;
 			end if;
 	 end process;
-	 
---	 process(clk)
---	 begin
---		  if rising_edge(clk) then
---				if rst = '1' then
---					en_w <= '0';
---					en_r <= '0';
---					data_bus <= (others => 'Z');
---					pr_state <= idle;
---				else
---					case pr_state is 
---						when idle =>
---							if read_ready = '1' then
---								en_r <= '1';
---								pr_state <= start_read;
---							else
---								pr_state <= idle;
---								en_r <= '0';
---							end if;
---							en_w <= '0';
---							
---						when start_read =>
---							pr_state <= read_data;
---							data <= data_bus;
---							
---						when read_data =>
---							pr_state <= finish;
---							led <= data(7 downto 0);
---							--data_bus <= (others => 'Z');
---							
---						when finish =>
---							pr_state <= idle;
---							--data_bus <= data;
---							
---						when start_write =>
---							pr_state <= write_data;
---							en_w <= '1';
---							
---						when write_data =>
---							pr_state <= idle;
---						
---					end case;
---				end if;
---			end if;
---	 end process;
-		
+	
 		--process to test write
 --	process(count)
 --	begin
