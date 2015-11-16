@@ -10,8 +10,8 @@ entity TOP is
         clk                :   in      std_logic;
         reset              :   in      std_logic;    
         USB_RS232_RXD      :   in      std_logic;
-        USB_RS232_TXD      :   out     std_logic
-		  --led					:  out		std_logic
+        USB_RS232_TXD      :   out     std_logic;
+		  led						:   out		std_logic_vector(7 downto 0)
     );
 end TOP;
 
@@ -33,6 +33,9 @@ architecture RTL of TOP is
 	 signal en_r, en_w, read_ready, rst : std_logic;
     signal count : integer range 0 to 10000 := 0;
 	 signal num : std_logic_vector(31 downto 0) := X"000000AA";
+	 type State is (idle, start_read, read_data, finish, start_write, write_data);
+	 signal pr_state : State := idle;
+	 signal data : std_logic_vector(31 downto 0);
 begin
 
 	 rst <= not reset;
@@ -49,27 +52,103 @@ begin
 				data_bus			=> data_bus,
 				read_ready		=> read_ready
     );
-    
+	 
 	 process(clk)
 	 begin
-			if rising_edge(clk) then
+		  if rising_edge(clk) then
 				if rst = '1' then
-					count <= 0;
+					en_w <= '0';
+					en_r <= '0';
+					led <= (others => '0');
+					data_bus <= (others => 'Z');
+					pr_state <= idle;
 				else
-					count <= count+1;
+					case pr_state is 
+						when idle =>
+							if read_ready = '1' then
+								en_r <= '1';
+								pr_state <= start_read;
+							else
+								pr_state <= idle;
+								en_r <= '0';
+							end if;
+							en_w <= '0';
+							
+						when start_read =>
+							pr_state <= read_data;
+							
+						when read_data =>
+							pr_state <= finish;
+							data <= data_bus;
+							--data_bus <= (others => 'Z');
+							
+						when finish =>
+							pr_state <= idle;
+							led <= data(7 downto 0);
+							--data_bus <= data;
+							
+						when others =>
+							pr_state <= idle;
+						end case;
 				end if;
 			end if;
 	 end process;
+	 
+--	 process(clk)
+--	 begin
+--		  if rising_edge(clk) then
+--				if rst = '1' then
+--					en_w <= '0';
+--					en_r <= '0';
+--					data_bus <= (others => 'Z');
+--					pr_state <= idle;
+--				else
+--					case pr_state is 
+--						when idle =>
+--							if read_ready = '1' then
+--								en_r <= '1';
+--								pr_state <= start_read;
+--							else
+--								pr_state <= idle;
+--								en_r <= '0';
+--							end if;
+--							en_w <= '0';
+--							
+--						when start_read =>
+--							pr_state <= read_data;
+--							data <= data_bus;
+--							
+--						when read_data =>
+--							pr_state <= finish;
+--							led <= data(7 downto 0);
+--							--data_bus <= (others => 'Z');
+--							
+--						when finish =>
+--							pr_state <= idle;
+--							--data_bus <= data;
+--							
+--						when start_write =>
+--							pr_state <= write_data;
+--							en_w <= '1';
+--							
+--						when write_data =>
+--							pr_state <= idle;
+--						
+--					end case;
+--				end if;
+--			end if;
+--	 end process;
 		
-	process(count)
-	begin
-		if count = 0 then
-			data_bus <= num;
-		elsif count = 2 then
-			en_w <= '1';
-		elsif count = 4 then
-			en_w <= '0';
-			data_bus <= (others => 'Z');
-		end if;
-	end process;
+		--process to test write
+--	process(count)
+--	begin
+--		if count = 0 then
+--			data_bus <= num;
+--		elsif count = 2 then
+--			en_w <= '1';
+--		elsif count = 4 then
+--			en_w <= '0';
+--			data_bus <= (others => 'Z');
+--		end if;
+--	end process;
 end RTL;

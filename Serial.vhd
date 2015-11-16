@@ -150,22 +150,14 @@ begin
 								end if;
 							
 						  when start_read =>
-								if uart_out_stb = '1' then
-									next_state := read_data;
-									data_bus(7 downto 0) <= uart_data_out(7 downto 0);
-									data_bus(31 downto 8) <= (others => '0');
-								else
-									next_state := start_read;
-								end if;
+								next_state := read_data;
+								data(7 downto 0) <= uart_data_out(7 downto 0);
+								data(31 downto 8) <= (others => '0');
 						  
 						  when read_data => 
-								if uart_out_ack = '1' then
-									 next_state := idle;
-									 data_bus <= (others => 'Z');
-									 data_ready <= '1';
-								else
-									 next_state := read_data;
-								end if;
+								next_state := idle;
+								data_ready <= '1';
+								uart_out_ack <= '1';
 						  
 						  when others => null;
 				    end case;

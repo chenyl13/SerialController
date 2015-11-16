@@ -1,7 +1,17 @@
 
-# PlanAhead Generated physical constraints 
 
 NET "USB_RS232_RXD" LOC = P24;
 NET "USB_RS232_TXD" LOC = R26;
 NET "reset" LOC = T1;
 NET "clk" LOC = U26;
+
+# PlanAhead Generated physical constraints 
+
+NET "led[0]" LOC = F26;
+NET "led[1]" LOC = G26;
+NET "led[2]" LOC = G25;
+NET "led[3]" LOC = H26;
+NET "led[4]" LOC = J26;
+NET "led[5]" LOC = J25;
+NET "led[6]" LOC = G23;
+NET "led[7]" LOC = J24;

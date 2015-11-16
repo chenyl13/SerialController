@@ -1,0 +1,35 @@
+#-----------------------------------------------------------
+# PlanAhead v14.2
+# Build 194362 by xbuild on Fri Jul 20 18:52:36 MDT 2012
+# Start of session at: Sat Nov 14 18:59:16 2015
+# Process ID: 5052
+# Log file: D:/code/git/github/SerialController/planAhead_run_1/planAhead.log
+# Journal file: D:/code/git/github/SerialController/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source D:/code/git/github/SerialController/pa.fromNetlist.tcl
+startgroup
+set_property package_pin F26 [get_ports {led[0]}]
+endgroup
+startgroup
+set_property package_pin G26 [get_ports {led[1]}]
+endgroup
+startgroup
+set_property package_pin G25 [get_ports {led[2]}]
+endgroup
+startgroup
+set_property package_pin H26 [get_ports {led[3]}]
+endgroup
+startgroup
+set_property package_pin J26 [get_ports {led[4]}]
+endgroup
+startgroup
+set_property package_pin J25 [get_ports {led[5]}]
+endgroup
+startgroup
+set_property package_pin G23 [get_ports {led[6]}]
+endgroup
+startgroup
+set_property package_pin J24 [get_ports {led[7]}]
+endgroup
+save_design
