@@ -7,6 +7,8 @@ entity TOP is
     port 
     (  
         -- General
+		  read_ready : in std_logic;
+		  data_bus : inout std_logic_vector(31 downto 0);
         clk                :   in      std_logic;
         reset              :   in      std_logic;    
         USB_RS232_RXD      :   in      std_logic;
@@ -17,20 +19,20 @@ end TOP;
 
 architecture RTL of TOP is
 
-    component Serial is
-			Port (  clk : in  STD_LOGIC;
-					  reset : in  STD_LOGIC; 
-					  en_r : in STD_LOGIC; --serialController
-					  en_w : in STD_LOGIC; --serialController
-					  RX : in  STD_LOGIC;
-					  TX : out  STD_LOGIC;
-					  data_bus : inout  STD_LOGIC_VECTOR(31 downto 0);
-					  read_ready : out  STD_LOGIC
-				  );
-    end component Serial;
+--    component Serial is
+--			Port (  clk : in  STD_LOGIC;
+--					  reset : in  STD_LOGIC; 
+--					  en_r : in STD_LOGIC; --serialController
+--					  en_w : in STD_LOGIC; --serialController
+--					  RX : in  STD_LOGIC;
+--					  TX : out  STD_LOGIC;
+--					  data_bus : inout  STD_LOGIC_VECTOR(31 downto 0);
+--					  read_ready : out  STD_LOGIC
+--				  );
+--    end component Serial;
     
-    signal data_bus : std_logic_vector(31 downto 0);
-	 signal en_r, en_w, read_ready, rst : std_logic;
+    --signal data_bus : std_logic_vector(31 downto 0);read_ready, 
+	 signal en_r, en_w, rst : std_logic;
     signal count : integer range 0 to 10000 := 0;
 	 signal num : std_logic_vector(31 downto 0) := X"000000AA";
 	 type State is (idle, start_read, read_data, finish, start_write, write_data);
@@ -40,18 +42,18 @@ begin
 
 	 rst <= not reset;
 
-    Serial_inst1 : Serial
-    port map    (  
-            -- General
-            clk      		=> clk,
-            reset    		=> rst, 
-            RX					=> USB_RS232_RXD,
-				TX					=> USB_RS232_TXD,
-				en_r				=> en_r,
-				en_w 				=> en_w,
-				data_bus			=> data_bus,
-				read_ready		=> read_ready
-    );
+--    Serial_inst1 : Serial
+--    port map    (  
+--            -- General
+--            clk      		=> clk,
+--            reset    		=> rst, 
+--            RX					=> USB_RS232_RXD,
+--				TX					=> USB_RS232_TXD,
+--				en_r				=> en_r,
+--				en_w 				=> en_w,
+--				data_bus			=> data_bus,
+--				read_ready		=> read_ready
+--    );
 	 
 	 process(clk)
 	 begin
